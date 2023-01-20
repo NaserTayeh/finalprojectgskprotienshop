@@ -78,10 +78,18 @@ class ProfileScreen extends StatelessWidget {
             ],
           ),
           TextFormField(
+            style: TextStyle(
+                color: Provider.of<MyProvider>(context).isDarkMode
+                    ? Colors.white
+                    : Colors.black),
             controller: Provider.of<MyProvider>(context).updatedFullName,
             decoration: InputDecoration(hintText: "full Name"),
           ),
           TextFormField(
+            style: TextStyle(
+                color: Provider.of<MyProvider>(context).isDarkMode
+                    ? Colors.white
+                    : Colors.black),
             controller: Provider.of<MyProvider>(context).updatedEmail,
             decoration: InputDecoration(
               hintText: "emailAddres",
@@ -95,7 +103,6 @@ class ProfileScreen extends StatelessWidget {
               Provider.of<MyProvider>(context, listen: false)
                   .profileValidation(context);
 
-            
               // profileVaidation(
               //   context: context,
               //   emailAdress: emailAddress,

@@ -32,7 +32,7 @@ class SignupBody extends StatelessWidget {
                 SizedBox(
                     height: MediaQuery.of(context).size.height * 0.04), // 4%
                 Text(
-                  "Register Account",
+                  "New Account",
                   style: TextStyle(
                     fontSize: getWidth(28),
                     fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class SignupBody extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Complete your details or continue \nwith social media",
+                  "",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),

@@ -35,53 +35,55 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _razorPay = Razorpay();
+    _razorPay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorPay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorPay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+    log('Payment success');
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    log(response.error.toString());
+    log('Payment error');
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet was selected
+    log('External wallet');
+  }
+
+  void openCheckout() async {
+    log((num.parse(totalPrice.toString()) * 100).toString());
+    var options = {
+      'key': 'rzp_test_1DP5mmOlF5G5ag',
+      'amount': 500,
+      'name': 'user ',
+      'description': 'payment for some random product',
+      'prefill': {'contact': '8888888888', 'email': 'user@gmail.com'},
+      'external': {
+        'wallet': ['paytm']
+      }
+    };
+    try {
+      _razorPay.open(options);
+    } on Exception catch (e) {
+      // TODO
+      log(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    Provider.of<MyProvider>(context).getCurrentUserData();
     String name = Provider.of<MyProvider>(context).loggingUser.fullName;
     String email = Provider.of<MyProvider>(context).loggingUser.emailAddress;
-    void openCheckout() async {
-      log((num.parse(totalPrice.toString()) * 100).toString());
-      var options = {
-        'key': 'rzp_test_1DP5mmOlF5G5ag',
-        'amount': 500,
-        'name': name,
-        'description': 'payment for some random product',
-        'prefill': {'contact': '8888888888', 'email': email},
-        'external': {
-          'wallet': ['paytm']
-        }
-      };
-      try {
-        _razorPay.open(options);
-      } on Exception catch (e) {
-        // TODO
-        log(e.toString());
-      }
-    }
-
-    void _handlePaymentSuccess(PaymentSuccessResponse response) {
-      // Do something when payment succeeds
-      log('Payment success');
-    }
-
-    void _handlePaymentError(PaymentFailureResponse response) {
-      // Do something when payment fails
-      log(response.error.toString());
-      log('Payment error');
-    }
-
-    void _handleExternalWallet(ExternalWalletResponse response) {
-      // Do something when an external wallet was selected
-      log('External wallet');
-    }
-
-    @override
-    void initState() {
-      super.initState();
-      _razorPay = Razorpay();
-      _razorPay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
-      _razorPay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
-      _razorPay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    }
 
     Provider.of<CartProvider>(context).getCartData();
     num calcToal = Provider.of<CartProvider>(context).calcTotal();
@@ -179,59 +181,65 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           //   ),
           // ),
           Expanded(
-              child: Column(
-            children: [
-              ListTile(
-                leading: Text(
-                  'Price',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+              child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ListTile(
+                  leading: Text(
+                    'Price',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  trailing: Text(
+                    '\$ $calcToal',
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+                  ),
                 ),
-                trailing: Text(
-                  '\$ $calcToal',
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
+                ListTile(
+                  leading: Text(
+                    'Discount',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  trailing: Text(
+                    '%5',
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+                  ),
                 ),
-              ),
-              ListTile(
-                leading: Text(
-                  'Discount',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                ListTile(
+                  leading: Text(
+                    'Shiping',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  trailing: Text(
+                    '\$10',
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+                  ),
                 ),
-                trailing: Text(
-                  '%5',
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
+                Divider(
+                  thickness: 2,
                 ),
-              ),
-              ListTile(
-                leading: Text(
-                  'Shiping',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                ListTile(
+                  leading: Text(
+                    'Total',
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  ),
+                  trailing: Text(
+                    '\$ $totalPrice',
+                    style:
+                        TextStyle(fontWeight: FontWeight.normal, fontSize: 18),
+                  ),
                 ),
-                trailing: Text(
-                  '\$10',
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
-                ),
-              ),
-              Divider(
-                thickness: 2,
-              ),
-              ListTile(
-                leading: Text(
-                  'Total',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
-                ),
-                trailing: Text(
-                  '\$ $totalPrice',
-                  style: TextStyle(fontWeight: FontWeight.normal, fontSize: 23),
-                ),
-              ),
-              Provider.of<CartProvider>(context).cartList.isEmpty
-                  ? Text('')
-                  : CustomButton(
-                      function: () {
-                        openCheckout();
-                      },
-                      text: "Buy")
-            ],
+                Provider.of<CartProvider>(context).cartList.isEmpty
+                    ? Text('')
+                    : CustomButton(
+                        function: () {
+                          openCheckout();
+                        },
+                        text: "Buy")
+              ],
+            ),
           ))
         ],
       ),

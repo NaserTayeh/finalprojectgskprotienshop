@@ -69,7 +69,7 @@ class BodyPart extends StatelessWidget {
                       flex: 3,
                     ),
                     ButtonCusomized(
-                      text: 'Continue',
+                      text: 'Go to Login',
                       function: () {
                         AppRouter.appRouter.goToWidget(SignInScreen());
                       },

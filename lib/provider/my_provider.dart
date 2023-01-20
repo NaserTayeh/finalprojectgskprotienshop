@@ -7,6 +7,7 @@ import 'package:final_project_firebase/Auth/auth_helper.dart';
 import 'package:final_project_firebase/data_reposotries/fire_store_helper.dart';
 import 'package:final_project_firebase/model/user_model.dart';
 import 'package:final_project_firebase/router/app_router.dart';
+import 'package:final_project_firebase/views/home/home2_screen.dart';
 import 'package:final_project_firebase/views/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +126,7 @@ class MyProvider extends ChangeNotifier {
         .collection('users')
         .doc(AuthHelper.authHelper.firebaseAuth.currentUser!.uid)
         .update(loggingUser.toMap());
-    AppRouter.appRouter.goToWidget(HomeScreen());
+    AppRouter.appRouter.goToWidget(MyHome());
   }
 
   profileValidation(BuildContext context) async {

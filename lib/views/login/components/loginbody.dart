@@ -37,7 +37,7 @@ class Body extends StatelessWidget {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.04),
                 Text(
-                  "Welcome Back",
+                  "",
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: getWidth(28),
@@ -45,7 +45,7 @@ class Body extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Sign in with your email and password  \nor continue with social media",
+                  " ",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * 0.08),

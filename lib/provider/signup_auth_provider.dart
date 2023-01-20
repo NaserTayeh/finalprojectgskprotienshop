@@ -58,7 +58,7 @@ class SignupAuthProvider extends ChangeNotifier {
           notifyListeners();
 
           // AppRouter.appRouter.goToWidget(HomeScreen());
-          AppRouter.appRouter.goToWidget(MyHome());
+          AppRouter.appRouter.goToWidgetAndReplace(MyHome());
         }
       } on FirebaseAuthException catch (e) {
         loading = false;

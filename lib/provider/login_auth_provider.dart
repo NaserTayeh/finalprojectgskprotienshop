@@ -39,7 +39,7 @@ class LoginAuthProvider extends ChangeNotifier {
         loading = false;
         notifyListeners();
         // await AppRouter.appRouter.goToWidget(HomeScreen());
-        await AppRouter.appRouter.goToWidget(MyHome());
+        await AppRouter.appRouter.goToWidgetAndReplace(MyHome());
         notifyListeners();
       } on FirebaseAuthException catch (e) {
         loading = false;
