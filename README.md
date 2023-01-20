@@ -2,15 +2,23 @@
 
 Firebase  Flutter project.
 
-## some pic of my project
+## some pic of my project - all project screens will find it in the screens folder
 
-This project is a starting point for a Flutter application.
+<img src='screenshot/Screenshot_1674244036.png' width="250"  height = "250" >
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+<img src='screenshot/Screenshot_1674244077.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244122.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244139.png' width="250"  height = "250" >
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<img src='screenshot/Screenshot_1674244144.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244154.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244160.png' width="250"  height = "250" >
+
+<img src='screenshot/Screenshot_1674244160.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244174.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244187.png' width="250"  height = "250" >
+<img src='screenshot/Screenshot_1674244213.png' width="250"  height = "250" >
+
+<img src='screenshot/Screenshot_1674244545.png' width="250"  height = "250" >
+
