@@ -1,8 +1,8 @@
 # final_project_firebase
 
-A new Flutter project.
+Firebase  Flutter project.
 
-## Getting Started
+## some pic of my project
 
 This project is a starting point for a Flutter application.
 
